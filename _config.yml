@@ -7,7 +7,7 @@ name: Aaron Gross
 description: The blog of an Electrical Engineer
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: 
+avatar: https://avatars3.githubusercontent.com/u/6620307?v=3&u=5aab41042cb0f15a1540142e024f71f5b23fb0b8&s=400
 
 #
 # Flags below are optional
@@ -16,16 +16,16 @@ avatar:
 # Includes an icon in the footer for each username you enter
 footer-links:
   dribbble:
-  email:
+  email: aaron.gross@temple.edu
   facebook:
   flickr:
-  github: 
+  github: https://github.com/aaronscode
   instagram:
-  linkedin:
+  linkedin: https://www.linkedin.com/in/aaron-gross-b0493ab0/
   pinterest:
-  rss: # just type anything here for a working RSS icon
+  rss: 
   twitter: 
-  stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
+  stackoverflow: https://stackoverflow.com/users/3792276/aaron-gross
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
 
