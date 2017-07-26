@@ -25,15 +25,15 @@ What are the ways we could represent this in binary? Well, we could use the ASCI
 
 	01000001 01000010 01000001 01000010 01000001 01000010 01000001 01000010 01000001 01000010 01000001 01000010 01000001 01000010 01000001 01000010 01000001 01000010 01000001 01000010 01000001 01000010 01000001 01000010 01000001 01000010 01000001 01000010 01000001 01000010 01000001 01000010
 
-Unfortunately, each character is taking up eight whole bits, which is an enormous waste of space! We'd be much better off if we just assigned a 0 to 'A' and a 1 to 'B':
+Unfortunately, each character is taking up eight whole bits, which is an enormous waste of space! We'd be much better off if we just assigned a 0 to 'A' and a 1 to 'B,' yielding:
 
 	010101010101010101010101010101
 
-Just like that we reudced the number of bits we were using by 8x. This is actually the result we would get if we applied the [Huffman Coding algorithm](https://en.wikipedia.org/wiki/Huffman_coding) to our example sequence. But we can do even better! Really, our example is just the phrase 'AB' repeated fifteen times, and this is one way to encode just that:
+And just like that we reudced the number of bits we were using by 8x. This is actually the result we would get if we applied the [Huffman Coding algorithm](https://en.wikipedia.org/wiki/Huffman_coding) to our example sequence. But we can do even better! Really, our example is just the phrase 'AB' repeated fifteen times, and this is one way we could encode that:
 
 	011111
 
-The first bit is 0, for 'A,' the second is 1 for 'B,' and the next four bits encode the number '15' for repeat it 15 times. Obviously, this encoding is highly depending on the exact example we're looking at, and to recover the original message you need to undersand how to decode the binary sequence above. It is, however, general enough to encode the sequence:
+The first bit is 0, for 'A,' the second is 1 for 'B,' and the next four bits encode the number '15' for "repeat the previous sequence 15 times". Obviously, this encoding is highly dependent on the exact example we're looking at, and to recover the original message you need to undersand how to decode the binary sequence above. It is, however, general enough to encode the sequence:
 
 	BABABABABABABABABABABABABABABABA
 
@@ -41,16 +41,18 @@ as
 
 	101111
     
+using the same rules as before.
+    
 What if, instead of encoding the whole sequence of A's and B's, our only choice was between whether the sequece started with an A or a B:
 
 	ABABABABABABABABABABABABABABABAB
 	BABABABABABABABABABABABABABABABA
 
-In this case, there is only one "bit" of information we need to convey, so we could represent the sequence starting with an A as a 0, and our sequence starting as a B with 1. As you can see, there are all sorts of little games you can play to squeeze as much compression out of your data as possible if you know enough about the sequnce you're trying to encode, or can assume some constraints on it. For example, when we were encoding our sequence as "first two letters, then the number of times we repeat those" above, we gave ourselves 4 bits to described the length, so we implicitly assumed it would be between 0 and 15. To encode a sequnce longer than 15 repeated charcters, we'd need to at least one extra bit.
+In this case, there is only one "bit" of information we need to convey, whether the sequence starts with 'A' or 'B.' This means we could represent the entire sequence starting with an A as a 0, and our sequence starting as a B with 1. As you can see, there are all sorts of little games you can play to squeeze as much compression out of your data as possible if you know enough about the sequnce you're trying to encode, or can assume some constraints on it. For example, when we were encoding our sequence as "first two letters, then the number of times we repeat those" above, we gave ourselves 4 bits to described the length, so we implicitly assumed it would be between 0 and 15. To encode a sequnce longer than 15 repeated charcters, we'd need to at least one extra bit.
 
-This begs the question, what if the data we want to compress isn't some hand picked sequnce of charcters chosen for the sake of walking through some examples? What if we don't know how long the data will be, what the distribution of symbols (symbols are letters, in our case) is, or even how many symbols there are? There could be more than just A or B in some text we want to compress. We have to consider other letters, and also things like newlines.
+This begs the question, what if the data we want to compress isn't some hand picked sequence of charcters chosen for the sake of walking through some examples? What if we don't know how long the data will be, what the distribution of symbols (symbols are letters, in our case) is, or even how many symbols there are? There could be more than just A or B in some text we want to compress; we have to consider other letters, and also things like newlines.
 
-Huffman Coding is able to address some of the issues above, but I wanted to implement a [Universal Source Coding](http://www.eit.lth.se/fileadmin/eit/courses/eit080/InfoTheorySH/InfoTheoryPart2a.pdf) algorithm, which is able to address all of the issues raised above, and more, and is also more interesting to implement than simple Huffman Coding. 
+Huffman Coding is able to address some of the issues above, but I wanted to implement a [Universal Source Coding](http://www.eit.lth.se/fileadmin/eit/courses/eit080/InfoTheorySH/InfoTheoryPart2a.pdf) algorithm, which is able to address all of the issues raised above, and more. Universal Soruce coding algorithms are also more interesting to implement than simple Huffman Coding, and I was looking for something that would be a challenge.
 
 ## The Lempel-Ziv '78 Algorithm
 
