@@ -9,9 +9,7 @@ After recently finishing a class in Information Theory, I found myself motivated
 
 The basic premise behind compression is that you take a file and shrink it by reducing number of bits used to encode the information in the file. This can be done in a lossless fashion, meaning that the file size is reduced but no actual information is lost, or in a lossy manner, meaning that some of the information in the file is sacrificied to make the compressed file even smaller. This article will only be concerned with lossles compression, but if you're interested in lossy compression, researching the JPEG image format is probably a good place to start.
 
-As a side note, I should mention that for every file that decreases in size when compressed, there is a file that will increase in size. This is a consequence of the fact that there are Information Theoretic hard limits on the ammount that you can compress a given block of information, and that every compression algorithm requires some inhernt overhead, whether that be in defining a symbol table or something else. For example, uncompressed plaintext English files compresses very well because there is a significant ammount of redundancy in both the English language and the way we encode english characters. But if you try to compress already compressed English plaintext, the output file will almost undoubtably be larger than the input file. This is because compression algorithms require some overhead to encode exactly how the data was compressed.
-
-95 printable characters - 6.57 bits
+As a side note, I should mention that for every file that decreases in size when compressed, there is a file that will increase in size. This is a consequence of the fact that there are Information Theoretic hard limits on the ammount that you can compress a given block of information, and that every compression algorithm requires some inhernt overhead, whether that be in defining a symbol table or something else. For example, uncompressed plaintext English files compresses very well because there is a significant ammount of redundancy in both the English language and the way we encode english characters. But if you try to compress already compressed English plaintext, the output file will almost undoubtably be larger than the input file.
 
 ## Some Examples
 
@@ -51,7 +49,7 @@ In this case, there is only one "bit" of information we need to convey: whether 
 The main takeaways from this are that:
 
 1. In order to decode (decompress) our data, we need to know exactly what strategy we used to decompress it in the first place.
-2. If we know the structure/lenght of our data, it actually contains less information, and we can play games to compress the data much more than we would be able to otherwise.
+2. If we know the structure/length of our data, it actually contains less information, and we can play games to compress the data much more than we would be able to otherwise.
 
 But what if the data we want to compress isn't some hand picked sequence of charcters chosen for the sake of walking through some examples? What if we don't know how long the data will be, what the distribution of symbols (symbols are letters, in our case) is, or even how many symbols there are? There could be more than just A or B in some text we want to compress; we have to consider other letters, and also things like newlines.
 
